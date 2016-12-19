@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=typeof title == 'unde?rel=1477421579220' ? 'New Sails ?rel=1477421579220' : title%></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="vie?rel=1477421579220" content="width=device-width, initial-scale=1, maximum-sc?rel=1477421579220">
+
+
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.12/js/adal.min.js"></script>
+    <script>
+      var ADAL = new AuthenticationContext({
+          instance: 'https://login.microsoftonline.com/',
+          tenant: 'common', //COMMON OR YOUR TENANT ID
+
+          clientId: '7adac02e-6799-4b49-b79b-0bf7c6345e2b', //This is your client ID
+          //secret: 'sBYBj8fiBBiJCTuFxvkX6DY',
+          redirectUri: 'http://localhost:1337', //This is your redirect URI
+
+          callback: userSignedIn,
+          popUp: true
+      });
+
+      function signIn() {
+          ADAL.login();
+      }
+
+      function userSignedIn(err, token) {
+          console.log('userSignedIn called');
+          if (!err) {
+              console.log("token: " + token);
+              showWelcomeMessage();
+              
+            $.ajax({
+                url: 'https://outlook.office.com/api/v2.0/me/mailfolders/inbox/messages?$top=10',
+                
+                headers: { 
+                    'Accept' : 'text/*, application/xml, application/json; odata.metadata=none',
+                    'client-request-id': '7adac02e-6799-4b49-b79b-0bf7c6345e2b',
+                    'Authorization' : 'Bearer '+ token ,
+                    'X-AnchorMailbox' : 'mkyaw@money-media.com',
+                    'Access-Control-Allow-Origin' : true
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            });
+      
+          }
+          else {
+              console.error("error: " + err);
+          }
+      }
+
+      function showWelcomeMessage() {
+          var user = ADAL.getCachedUser();
+          var divWelcome = document.getElementById('WelcomeMessage');
+          divWelcome.innerHTML = "Welcome " + user.profile.name;
+      }
+      
+      
+
+    </script> 
+    
+  </head>
+
+  <body>
+    <%- body %>
+
+
+
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js?rel=30bb93594d"></script>
+    <script src="/js/brandnew.js?rel=11fa182801"></script>
+    <script src="/js/dash.js?rel=f6759edeb7"></script>
+    <script src="/js/jwplayer.js?rel=3acbad1b73"></script>
+    <script src="/js/newTest.js?rel=836c72afdf"></script>
+    <script src="/js/videojs-dash.js?rel=3b221aa9aa"></script>
+    <script src="/js/videojsTest.js?rel=09da9a2e84"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

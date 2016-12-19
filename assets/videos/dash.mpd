@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MPD mediaPresentationDuration="PT1M53.334S" minBufferTime="PT1.500S" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" xmlns="urn:mpeg:dash:schema:mpd:2011">
+    <Period duration="PT1M53.334S">
+        <AdaptationSet segmentAlignment="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
+            <Representation bandwidth="545837" codecs="avc1.4d401e" frameRate="30" height="240" id="VIDEO-1" mimeType="video/mp4" startWithSAP="1" width="426">
+                <BaseURL>/videos/dash600k.mp4</BaseURL>
+                <SegmentBase indexRange="902-1617" indexRangeExact="true">
+                    <Initialization range="0-901"/>
+                </SegmentBase>
+            </Representation>
+            <Representation bandwidth="1075533" codecs="avc1.4d401e" frameRate="30" height="360" id="VIDEO-2" mimeType="video/mp4" startWithSAP="1" width="640">
+                <BaseURL>/videos/dash1200k.mp4</BaseURL>
+                <SegmentBase indexRange="903-1618" indexRangeExact="true">
+                    <Initialization range="0-902"/>
+                </SegmentBase>
+            </Representation>
+            <Representation bandwidth="2124701" codecs="avc1.4d401f" frameRate="30" height="480" id="VIDEO-3" mimeType="video/mp4" startWithSAP="1" width="854">
+                <BaseURL>/videos/dash2400k.mp4</BaseURL>
+                <SegmentBase indexRange="923-1638" indexRangeExact="true">
+                    <Initialization range="0-922"/>
+                </SegmentBase>
+            </Representation>
+            <Representation bandwidth="4227292" codecs="avc1.4d401f" frameRate="30" height="720" id="VIDEO-4" mimeType="video/mp4" startWithSAP="1" width="1280">
+                <BaseURL>/videos/dash4800k.mp4</BaseURL>
+                <SegmentBase indexRange="902-1617" indexRangeExact="true">
+                    <Initialization range="0-901"/>
+                </SegmentBase>
+            </Representation>
+        </AdaptationSet>
+    </Period>
+</MPD>
